@@ -1,0 +1,12 @@
+main : com.clashwars.cwreward.CWReward
+name: ${project.artifactId}
+version: ${project.version}
+description: ${project.description}
+depend: [CWCore]
+commands:
+  reward:
+    description: Random reward command.
+    usage: /<command> {player}
+  eventreward:
+    description: Random event reward command.
+    usage: /<command> {player}

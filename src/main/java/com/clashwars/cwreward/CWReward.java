@@ -7,6 +7,7 @@ import com.clashwars.cwreward.config.ClashPointsCfg;
 import com.clashwars.cwreward.config.LoginCfg;
 import com.clashwars.cwreward.config.PluginCfg;
 import com.clashwars.cwreward.events.MainEvents;
+import com.clashwars.cwreward.reward.internal.RewardManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -24,6 +25,8 @@ public class CWReward extends JavaPlugin {
     private ClashPointsCfg cpCfg;
     private CPShopCfg cpShopCfg;
     private LoginCfg loginCfg;
+
+    private RewardManager rm;
 
     private Commands cmds;
 
@@ -60,6 +63,8 @@ public class CWReward extends JavaPlugin {
 
         loginCfg = new LoginCfg("plugins/CWReward/logins.yml");
         loginCfg.load();
+
+        rm = new RewardManager(this);
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new MainEvents(this), this);

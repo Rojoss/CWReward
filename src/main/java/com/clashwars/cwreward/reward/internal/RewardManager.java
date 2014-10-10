@@ -3,7 +3,9 @@ package com.clashwars.cwreward.reward.internal;
 import com.clashwars.cwcore.helpers.CWItem;
 import com.clashwars.cwcore.utils.CWUtil;
 import com.clashwars.cwreward.CWReward;
+import com.clashwars.cwreward.reward.CmdReward;
 import com.clashwars.cwreward.reward.CoinReward;
+import com.clashwars.cwreward.reward.ExpReward;
 import com.clashwars.cwreward.reward.ItemReward;
 import org.bukkit.Material;
 
@@ -23,6 +25,9 @@ public class RewardManager {
         rewards.put("coinsTest", new CoinReward(new String[] {"*"}, 0.5f, 100, 250));
         rewards.put("itemTest1", new ItemReward(new String[] {"*"}, 0.5f, new CWItem(Material.DIAMOND), 1, 3));
         rewards.put("itemTest2", new ItemReward(new String[] {"*"}, 0.5f, new CWItem(Material.TNT), Arrays.asList(2,4,6)));
+        rewards.put("expTest1", new ExpReward(new String[] {"*"}, 0.5f, Arrays.asList(100, 200, 300, 400, 500)));
+        rewards.put("expTest2", new ExpReward(new String[] {"*"}, 0.1f, 999));
+        rewards.put("cmdTest1", new CmdReward(new String[] {"*"}, 0.5f, 1, 10, "spawnmob pig {VAL} {PLAYER}", "{VAL} Pigs"));
     }
 
     public String giveSpecificReward(String playerName, String name) {

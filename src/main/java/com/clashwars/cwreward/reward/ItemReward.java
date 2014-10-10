@@ -1,7 +1,8 @@
-package com.clashwars.cwreward.reward.internal;
+package com.clashwars.cwreward.reward;
 
 import com.clashwars.cwcore.CWCore;
 import com.clashwars.cwcore.helpers.CWItem;
+import com.clashwars.cwreward.reward.internal.Reward;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -9,28 +10,28 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Map;
 
-public class Items extends Reward {
+public class ItemReward extends Reward {
 
     CWItem item;
 
     //Item rewards work for offline players with the queue system but it wont keep meta data.
     //So it's best to only give item rewards to online players.
 
-    public Items(String[] categories, float percentage, CWItem item) {
+    public ItemReward(String[] categories, float percentage, CWItem item) {
         super(categories, percentage, item.getAmount());
     }
 
-    public Items(String[] categories, float percentage, CWItem item, int minAmt, int maxAmt) {
+    public ItemReward(String[] categories, float percentage, CWItem item, int minAmt, int maxAmt) {
         super(categories, percentage, minAmt, maxAmt);
         this.item = item;
     }
 
-    public Items(String[] categories, float percentage, CWItem item, List<Integer> amounts) {
+    public ItemReward(String[] categories, float percentage, CWItem item, List<Integer> amounts) {
         super(categories, percentage, amounts);
         this.item = item;
     }
 
-    public Items(String[] categories, float percentage, CWItem item, Map<Integer, Float> amounts, boolean addTogether) {
+    public ItemReward(String[] categories, float percentage, CWItem item, Map<Integer, Float> amounts, boolean addTogether) {
         super(categories, percentage, amounts, addTogether);
         this.item = item;
     }

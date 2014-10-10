@@ -10,6 +10,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.craftbukkit.libs.com.google.gson.Gson;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +21,8 @@ public class CWReward extends JavaPlugin {
     private static CWReward instance;
     private CWCore cwcore;
     private Economy econ;
+
+    private Gson gson = new Gson();
 
     private PluginCfg cfg;
     private LoginCfg loginCfg;
@@ -85,6 +88,10 @@ public class CWReward extends JavaPlugin {
 
 	
 	/* Getters & Setters */
+
+    public Gson getGson() {
+        return gson;
+    }
 
     public Economy getEconomy() {
         return econ;

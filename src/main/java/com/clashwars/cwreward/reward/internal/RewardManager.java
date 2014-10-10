@@ -20,19 +20,12 @@ public class RewardManager {
 
     public void populateRewards() {
         Map<Integer, Double> valuesPerc = new HashMap<Integer, Double>();
-        rewards.put("coinsTest", new CoinReward(new String[] {"*"}, 0.1f, 100, 250));
-        rewards.put("itemTest1", new ItemReward(new String[] {"*"}, 0.1f, new CWItem(Material.DIAMOND), 1, 3));
-        rewards.put("itemTest2", new ItemReward(new String[] {"*"}, 0.1f, new CWItem(Material.TNT), Arrays.asList(2,4,6)));
-        rewards.put("expTest1", new ExpReward(new String[] {"*"}, 0.1f, Arrays.asList(100, 200, 300, 400, 500)));
-        rewards.put("expTest2", new ExpReward(new String[] {"*"}, 0.1f, 999));
-        rewards.put("cmdTest1", new CmdReward(new String[] {"*"}, 0.1f, 1, 10, "spawnmob pig {VAL} {PLAYER}", "{VAL} Pigs"));
 
         // VOTING REWARDS
         valuesPerc.put(1, 1.0);
         valuesPerc.put(2, 0.5);
         valuesPerc.put(3, 0.1);
         rewards.put("vote-dia", new ItemReward(new String[] {"*", "vote"}, 0.1f, new CWItem(Material.DIAMOND), valuesPerc, false));
-
         valuesPerc.clear();
         valuesPerc.put(4, 1.0);
         valuesPerc.put(8, 0.5);
@@ -41,7 +34,7 @@ public class RewardManager {
         rewards.put("vote-emeralds", new ItemReward(new String[] {"*", "vote"}, 0.25f, new CWItem(Material.EMERALD), valuesPerc, false));
         rewards.put("vote-xp", new ExpReward(new String[] {"*", "vote"}, 0.2f, Arrays.asList(100, 200, 300, 400, 500)));
         rewards.put("vote-coins", new CoinReward(new String[] {"*", "vote"}, 0.2f, Arrays.asList(200, 300, 400, 500, 600, 700, 800)));
-        rewards.put("vote-villager", new CmdReward(new String[] {"*", "vote"}, 0.01f, 1, "spawnmob villager {VAL} {PLAYER}", "&6SPECIAL&8: &aA villager"));
+        rewards.put("vote-villager", new CmdReward(new String[] {"*", "vote"}, 0.005f, 1, "spawnmob villager {VAL} {PLAYER}", "&bSPECIAL&8: &3A villager"));
         //TODO: vote-haste
         //TODO: vote-clashpoints
 
@@ -51,7 +44,6 @@ public class RewardManager {
         valuesPerc.put(1, 1.0);
         valuesPerc.put(2, 0.5);
         rewards.put("event-dia", new ItemReward(new String[] {"*", "event"}, 0.05f, new CWItem(Material.DIAMOND), valuesPerc, false));
-
         valuesPerc.clear();
         valuesPerc.put(2, 1.0);
         valuesPerc.put(4, 0.5);

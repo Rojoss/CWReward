@@ -1,13 +1,12 @@
 package com.clashwars.cwreward.reward.internal;
 
+import com.clashwars.cwcore.helpers.CWItem;
 import com.clashwars.cwcore.utils.CWUtil;
 import com.clashwars.cwreward.CWReward;
 import com.clashwars.cwreward.reward.Coins;
+import org.bukkit.Material;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class RewardManager {
 
@@ -21,6 +20,8 @@ public class RewardManager {
 
     public void populateRewards() {
         rewards.put("coinsTest", new Coins(new String[] {"*"}, 0.5f, 100, 250));
+        rewards.put("itemTest1", new Items(new String[] {"*"}, 0.5f, new CWItem(Material.DIAMOND), 1, 3));
+        rewards.put("itemTest2", new Items(new String[] {"*"}, 0.5f, new CWItem(Material.TNT), Arrays.asList(2,4,6)));
     }
 
     public String giveSpecificReward(String playerName, String name) {

@@ -2,12 +2,11 @@ package com.clashwars.cwreward;
 
 import com.clashwars.cwcore.CWCore;
 import com.clashwars.cwreward.commands.Commands;
-import com.clashwars.cwreward.config.CPShopCfg;
-import com.clashwars.cwreward.config.ClashPointsCfg;
 import com.clashwars.cwreward.config.LoginCfg;
 import com.clashwars.cwreward.config.PluginCfg;
 import com.clashwars.cwreward.events.MainEvents;
 import com.clashwars.cwreward.reward.internal.RewardManager;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -20,10 +19,9 @@ import java.util.logging.Logger;
 public class CWReward extends JavaPlugin {
     private static CWReward instance;
     private CWCore cwcore;
+    private Economy econ;
 
     private PluginCfg cfg;
-    private ClashPointsCfg cpCfg;
-    private CPShopCfg cpShopCfg;
     private LoginCfg loginCfg;
 
     private RewardManager rm;
@@ -34,7 +32,6 @@ public class CWReward extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        cpCfg.save();
         loginCfg.save();
         Bukkit.getScheduler().cancelTasks(this);
         log("disabled");
@@ -51,15 +48,15 @@ public class CWReward extends JavaPlugin {
             return;
         }
         cwcore = (CWCore) plugin;
+        econ = cwcore.GetDM().getEconomy();
+        if (econ == null) {
+            log("Vault couldn't be loaded.");
+            setEnabled(false);
+            return;
+        }
 
         cfg = new PluginCfg("plugins/CWReward/CWReward.yml");
         cfg.load();
-
-        cpCfg = new ClashPointsCfg("plugins/CWReward/clashpoints.yml");
-        cpCfg.load();
-
-        cpShopCfg = new CPShopCfg("plugins/CWReward/cpShop.yml");
-        cpShopCfg.load();
 
         loginCfg = new LoginCfg("plugins/CWReward/logins.yml");
         loginCfg.load();
@@ -89,16 +86,16 @@ public class CWReward extends JavaPlugin {
 	
 	/* Getters & Setters */
 
+    public Economy getEconomy() {
+        return econ;
+    }
+
+    public RewardManager getRM() {
+        return rm;
+    }
+
     public PluginCfg getCfg() {
         return cfg;
-    }
-
-    public ClashPointsCfg getCPCfg() {
-        return cpCfg;
-    }
-
-    public CPShopCfg getCPShopCfg() {
-        return cpShopCfg;
     }
 
     public LoginCfg getLoginCfg() {

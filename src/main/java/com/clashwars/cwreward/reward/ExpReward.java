@@ -23,7 +23,7 @@ public class ExpReward extends Reward {
         super(categories, percentage, values);
     }
 
-    public ExpReward(String[] categories, float percentage, Map<Integer, Float> valuesPerc, boolean addTogether) {
+    public ExpReward(String[] categories, float percentage, Map<Integer, Double> valuesPerc, boolean addTogether) {
         super(categories, percentage, valuesPerc, addTogether);
     }
 
@@ -36,7 +36,7 @@ public class ExpReward extends Reward {
             ExpUtil expUtil = new ExpUtil((Player)offlinePlayer);
             expUtil.setExp(expUtil.getCurrentExp() + xp);
         } else {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "queue " + player + " exp give {PLAYER} " + xp);
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "queue " + player + " cmd exp give {PLAYER} " + xp);
         }
 
         return "" + xp + " XP";

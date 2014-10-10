@@ -3,7 +3,6 @@ package com.clashwars.cwreward.reward;
 import com.clashwars.cwreward.reward.internal.Reward;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.entity.Player;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,12 @@ public class CmdReward extends Reward {
         this.resultMsg = resultMsg;
     }
 
+    public CmdReward(String[] categories, float percentage, int val, String cmd, String resultMsg) {
+        super(categories, percentage, val);
+        this.cmd = cmd;
+        this.resultMsg = resultMsg;
+    }
+
     public CmdReward(String[] categories, float percentage, int minVal, int maxVal, String cmd, String resultMsg) {
         super(categories, percentage, minVal, maxVal);
         this.cmd = cmd;
@@ -34,7 +39,7 @@ public class CmdReward extends Reward {
         this.resultMsg = resultMsg;
     }
 
-    public CmdReward(String[] categories, float percentage, Map<Integer, Float> valuesPerc, boolean addTogether, String cmd, String resultMsg) {
+    public CmdReward(String[] categories, float percentage, Map<Integer, Double> valuesPerc, boolean addTogether, String cmd, String resultMsg) {
         super(categories, percentage, valuesPerc, addTogether);
         this.cmd = cmd;
         this.resultMsg = resultMsg;

@@ -31,7 +31,7 @@ public class ItemReward extends Reward {
         this.item = item;
     }
 
-    public ItemReward(String[] categories, float percentage, CWItem item, Map<Integer, Float> amounts, boolean addTogether) {
+    public ItemReward(String[] categories, float percentage, CWItem item, Map<Integer, Double> amounts, boolean addTogether) {
         super(categories, percentage, amounts, addTogether);
         this.item = item;
     }

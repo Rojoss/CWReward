@@ -1,5 +1,6 @@
 package com.clashwars.cwreward.reward;
 
+import com.clashwars.cwreward.CWReward;
 import com.clashwars.cwreward.reward.internal.Reward;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class CoinReward extends Reward {
         super(categories, percentage, values);
     }
 
-    public CoinReward(String[] categories, float percentage, Map<Integer, Float> valuesPerc, boolean addTogether) {
+    public CoinReward(String[] categories, float percentage, Map<Integer, Double> valuesPerc, boolean addTogether) {
         super(categories, percentage, valuesPerc, addTogether);
     }
 
@@ -28,7 +29,7 @@ public class CoinReward extends Reward {
     public String execute(String player) {
         int coins = getValue();
 
-        //TODO: Give coins.
+        CWReward.inst().getEconomy().depositPlayer(player, coins);
 
         return "" + coins + " Coins";
     }

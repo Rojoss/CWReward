@@ -16,7 +16,7 @@ public class Reward {
     protected int minVal = -1;
     protected int maxVal = -1;
     protected List<Integer> values;
-    protected Map<Integer, Float> valuesPerc;
+    protected Map<Integer, Double> valuesPerc;
 
     /**
      * Create a reward without a value.
@@ -72,17 +72,22 @@ public class Reward {
 
     /**
      * Create reward with a map of values and percentages.
-     * The percentages need to sum with with a total of 1.
-     * For example [50->0.4, 100->0.3, 150->0.2, 200->0.1]
-     * If addTogether is true it will check each reward 1 by 1.
-     * so you have 40% chance to get 50 and if you get that and then you also get the 30% chance you will get 150.
-     * You should always specify a value with 100% chance because otherwise it's not guaranteed there will be a value.
+     *
+     * If addTogether is false it will only get 1 random value based on the percentage.
+     * The percentages can be anything and the higher the percentage compared with the other percentages the more likely you will get that value.
+     * A good example: [50 -> 2.0,  100 -> 1.5,  150 -> 1.0,  200 -> 0.5]
+     *
+     * If addTogether is true it will check each reward 1 by 1 and sum up all values that matched the random number.
+     * so you have 0.4% chance to get 50 and if you get that and then you also get the 0.3% chance you will get 150.
+     * You should always specify a value with 1.0% chance because otherwise it's not guaranteed there will be a value.
+     * Unlike the addTogether false you need to make sure that all percentages are between 0.0 and 1.0
+     *
      * @param categories The reward categories.
      * @param percentage The percentage chance to get this.
      * @param valuesPerc The map with values and percentages.
      * @param addTogether Should it sum up all values?
      */
-    public Reward(String[] categories, float percentage, Map<Integer, Float> valuesPerc, boolean addTogether) {
+    public Reward(String[] categories, float percentage, Map<Integer, Double> valuesPerc, boolean addTogether) {
         this.categories = categories;
         this.percentage = percentage;
         this.valuesPerc = valuesPerc;
@@ -125,7 +130,19 @@ public class Reward {
                 }
             }
         } else if (type == 4) {
-            //TODO: Mode 4.
+            float totalPerc = 0;
+            for (double p : valuesPerc.values()) {
+                totalPerc += p;
+            }
+
+            double random = Math.random() * totalPerc;
+            for (int v : valuesPerc.keySet()) {
+                random -= valuesPerc.get(v);
+                if (random <= 0.0d) {
+                    value = v;
+                    break;
+                }
+            }
         }
         return value;
     }
